@@ -1,0 +1,25 @@
+[user]
+	name = user name
+	email = mail@id.com
+[github]
+    user = username
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[color "status"]
+    added = green
+    changed = blue
+    untracked = red
+[color "diff"]
+    meta = yellow
+    old = red
+    new = green
+[push]
+	default = current
