@@ -1,17 +1,22 @@
-autocmd! bufwritepost .vimrc source %
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" No compatibility
-set nocompatible
+" load plugins from vundle
+source ~/.vim/plugins.vim
+
+set nocompatible " not compatible with vi
+set autoread " detect when a file is changed
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+
+" switch syntax highlighting on
+syntax on
 set encoding=utf-8
 
-
-"Pathogen load
-call pathogen#infect()
-call pathogen#helptags()
-
-syntax on
-filetype plugin indent on
-set et
+autocmd! bufwritepost .vimrc source %
 
 let mapleader=","
 
@@ -34,7 +39,15 @@ set laststatus=2
 "Round indent to nearest multiple of 4
 set shiftround
 "No line-wrapping
-set nowrap
+"set nowrap
+set wrap "turn on line wrapping
+set wrapmargin=8 " wrap lines when coming within n characters from side
+set linebreak " set soft wrapping
+set showbreak=… " show ellipsis at breaking
+
+set autoindent " automatically set indent of new line
+set smartindent
+
 
 " Better copy & paste
 " " When you want to paste large blocks of code into vim, press F2 before you
@@ -85,7 +98,8 @@ set undolevels=700
 set nobackup
 set nowritebackup
 set noswapfile
-set clipboard=unnamedplus
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 
 "====[ Make the 81st column stand out ]====================
@@ -141,6 +155,9 @@ let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 
+""emmet-vim"
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
