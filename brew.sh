@@ -12,6 +12,7 @@ brew update && brew cleanup
 
 brew install gcc
 brew install git
+brew install diff-so-fancy
 brew install gpg
 brew install openssh
 brew install tmux
