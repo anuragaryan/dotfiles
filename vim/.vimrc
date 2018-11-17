@@ -22,7 +22,9 @@ let mapleader=","
 
 autocmd CompleteDone * pclose
 
-set list listchars=tab:»·,trail:·
+"set list listchars=tab:»·,trail:·
+set list listchars=tab:▸\ ,trail:▫
+
 
 "I like numbers
 set nu
@@ -31,9 +33,9 @@ set relativenumber
 set smarttab
 syn on se title
 "4 space
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set laststatus=2
 "Round indent to nearest multiple of 4
@@ -63,6 +65,11 @@ noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
 
+" Better Searches
+set incsearch
+set ignorecase
+set smartcase
+
 
 " Quicksave command
 noremap <C-Z> :update<CR>
@@ -76,7 +83,7 @@ noremap <Leader>E :qa!<CR>   " Quit all windows
 
 
 " easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
+map <Leader>b <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
 
@@ -103,7 +110,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 
 "====[ Make the 81st column stand out ]====================
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=DarkGray
 call matchadd('ColorColumn', '\%81v', 100)
 
 " make paren match clearer (stolen from r00k dotfiles!)
@@ -113,8 +120,8 @@ hi MatchParen cterm=none ctermbg=black ctermfg=yellow
 """"""To run codes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;python3' shellescape(@%, 1)<cr>
-autocmd FileType c map <F9> :w <CR> :!gcc-4.9 -O2 -g -Wall -Wextra % -o %< && ./%< <CR>
-autocmd FileType cpp map <F9> :w <CR> :!g++-4.9 -O2 -g -Wall -Wextra % -o %< && ./%< <CR>
+autocmd FileType c map <F9> :w <CR> :!gcc-6 -O2 -g -Wall -Wextra % -o %< && ./%< <CR>
+autocmd FileType cpp map <F9> :w <CR> :!g++-6 -O2 -g -Wall -Wextra % -o %< && ./%< <CR>
 "Check test cases, just select the case and click F6
 map <F6> :call TestIt() <CR>
 
@@ -126,6 +133,8 @@ let g:html_indent_inctags="html,body,head,tbody,span,b,a,div"
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Turn spellcheck on for markdown files.
 autocmd BufNewFile,BufRead *.markdown,*.md set spell
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
@@ -139,6 +148,28 @@ map <silent> <C-h> :call WinMove('h')<cr>
 map <silent> <C-j> :call WinMove('j')<cr>
 map <silent> <C-k> :call WinMove('k')<cr>
 map <silent> <C-l> :call WinMove('l')<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Golang settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" use goimports for formatting
+let g:go_fmt_command = "goimports"
+
+" turn highlighting on
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+
+" Open go doc in vertical window, horizontal, or tab
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
@@ -159,6 +190,16 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
+"""ctrlp
+if exists("g:ctrlp_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/node_modules
+"""https://github.com/kien/ctrlp.vim/issues/160
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

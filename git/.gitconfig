@@ -1,25 +1,30 @@
 [user]
-	name = user name
-	email = mail@id.com
+  name = Anurag Aryan
+  email = anurag.aryan2011@gmail.com
 [github]
-    user = username
+  user = anuragaryan
 [core]
-    editor = vim
-    excludesfile = ~/.gitignore
+  editor = vim
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
-    ui = true
-    pager = true
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "status"]
-    added = green
-    changed = blue
-    untracked = red
+  added = green
+  changed = blue
+  untracked = red
 [color "diff"]
-    meta = yellow
-    old = red
-    new = green
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [push]
-	default = current
+  default = current

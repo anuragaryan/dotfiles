@@ -12,6 +12,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
@@ -19,7 +20,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'klen/python-mode'
 Plugin 'tpope/vim-markdown'
 Plugin 'mattn/emmet-vim'
+Plugin 'fatih/vim-go'
 "Plugin 'garbas/vim-snipmate'
+
 
 call vundle#end()
 filetype plugin indent on
